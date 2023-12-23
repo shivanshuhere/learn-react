@@ -1,0 +1,18 @@
+
+.card {
+    color: #fff;
+  
+    width: fit-content;
+    border: 2px solid darkslategray;
+    border-radius: 7px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.766);
+  }
+  
+  .card img {
+    width: 22rem;
+    height: 13rem;
+    aspect-ratio:initial;
+    object-fit: cover;
+    border-radius: 3px;
+  }
