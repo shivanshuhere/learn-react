@@ -1,7 +1,6 @@
 
 import { useState } from "react"
 
-
 function Counter () {
 
         let [count, setCount] =  useState(7)
@@ -17,10 +16,11 @@ function Counter () {
 
     return (
         <>
-            <h3>Counter is :{count}</h3>
-            <button onClick={increaseCounter}>Increase</button>
-            <br />
-            <button onClick={decreaseCounter}>Decrese</button>
+            <h3 className="counter">Counter is : <strong>{count}</strong></h3>
+            <div>
+            <button className="btn" onClick={increaseCounter}>Increase</button>
+            <button className="btn" onClick={decreaseCounter}>Decrese</button>
+            </div>
         </>
     )
 }
