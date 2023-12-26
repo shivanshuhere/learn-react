@@ -1,5 +1,5 @@
-
-// WORK ---- we can also validate the prop types
+import PropTypes from 'prop-types'
+import './List.css';
 function List (props) {
 
         const itemsList = props.items
@@ -12,20 +12,26 @@ function List (props) {
 
     return (
         <>
-        <h2>{category.toUpperCase()}</h2>
-        <ul>{listItems}</ul>
+        <h2 className='category'>{category.toUpperCase()}</h2>
+        <ul className='list'>{listItems}</ul>
         </>
     )
 }
 
-/*
- List.propTypes= {
 
+ List.propTypes= {
+    items : PropTypes.arrayOf(PropTypes.shape({
+        id : PropTypes.number,
+        name : PropTypes.string,
+        calories : PropTypes.number
+    })),
+    category : PropTypes.string
 }
 
 List.defaultProps = {
-
+    items : [],
+    category : "Category"
 }
-*/
+
 
 export default List

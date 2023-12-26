@@ -18,8 +18,11 @@ function App() {
 
   return (
     <div>
-      <List items = {fruits} category = 'Fruits'/>
-      <List items = {vegitabels} category = 'Vegitabels'/>
+      {fruits.length > 0 && <List items = {fruits} category = 'Fruits'/> }
+      {fruits.length > 0 &&  <List items = {vegitabels} category = 'Vegitabels'/>}
+      {fruits.length > 0 && <List items = {fruits} /> }
+      {fruits.length > 0 &&  <List items = {vegitabels} category = 'Vegitabels'/>}
+      
     </div>
   ); 
 }
