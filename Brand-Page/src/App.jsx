@@ -7,7 +7,7 @@ function App() {
 
     return (
         <>
-            <div className="overflow-hidden">
+            <div className="overflow-hidden select-none">
                 <Header />
                 <Main />
             </div>

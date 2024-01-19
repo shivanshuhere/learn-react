@@ -48,7 +48,7 @@ function Main() {
                 {/* img */}
                 <div className="w-1/2 flex justify-center place-items-center">
                     <img
-                        className="border-transparent rounded-lg h"
+                        className="border-transparent rounded-lg h pointer-events-none"
                         src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/88dd3883-4b00-462c-9c52-f28cd2033c93/air-jordan-1-low-se-shoes-m3sXwW.png"
                         alt="shoes"
                     />
