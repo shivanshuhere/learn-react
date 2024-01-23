@@ -1,0 +1,8 @@
+{
+    "build": {
+      "rollupOptions": {
+        "external": ["react-dice-roll"]
+      }
+    }
+  }
+  
