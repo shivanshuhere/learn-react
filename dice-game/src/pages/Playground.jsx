@@ -3,19 +3,32 @@ import { Button } from "@/components/ui/button";
 import { Box } from "@/components/ui";
 import { useId } from "react";
 import Dice from "react-dice-roll";
+import { AlignRight } from "lucide";
 function Playground() {
     const boxes = [];
+
     for (let i = 1; i <= 6; i++) {
-        boxes.push(<Box key={useId()} handleSelectNumber value={i} />);
+        boxes.push(
+            <Box
+                key={useId()}
+                handleSelect={(value) => setSelectNumber(value)}
+                value={i}
+            />
+        );
     }
 
     const [score, setScore] = useState(0);
     const [rules, setRules] = useState(false);
     const [rule, setRule] = useState("Show");
-    const [selectNumber, setSelectNumber] = useState(2);
-    const [rollValue, setRollValue] = useState();
+    const [selectNumber, setSelectNumber] = useState(null);
+
+    // no selection
+    const selectionError = () => {
+        alert("Please select a number ");
+    };
 
     // show / hide btn
+
     const showRules = () => {
         setRules((prev) => !prev);
         setRule((prev) => (prev == "Show" ? "Hide" : "Show"));
@@ -24,6 +37,19 @@ function Playground() {
     //reset btn
     const handleReset = () => {
         setScore(0);
+    };
+
+    //compare values
+    const compareVals = (value) => {
+        if (value == selectNumber) {
+            setScore((prev) => prev + value);
+            console.log("matched");
+            setSelectNumber(null);
+        } else {
+            setScore((prev) => prev - 2);
+            console.log("no match");
+            setSelectNumber(null);
+        }
     };
 
     return (
@@ -39,10 +65,13 @@ function Playground() {
             </div>
             <div>
                 <Dice
-                    cheatValue={2}
                     onRoll={(value) => {
-                        setRollValue(value);
-                        console.log("roll", rollValue);
+                        console.log("roll", value);
+                        if (selectNumber == null) {
+                            selectionError();
+                        } else {
+                            compareVals(value);
+                        }
                     }}
                     size={100}
                 />
