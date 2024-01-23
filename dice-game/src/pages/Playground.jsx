@@ -1,23 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Box } from "@/components/ui";
 import { useId } from "react";
+import Dice from "react-dice-roll";
 function Playground() {
     const boxes = [];
     for (let i = 1; i <= 6; i++) {
-        boxes.push(<Box key={useId()} value={i} />);
+        boxes.push(<Box key={useId()} handleSelectNumber value={i} />);
     }
 
     const [score, setScore] = useState(0);
     const [rules, setRules] = useState(false);
     const [rule, setRule] = useState("Show");
-    const [selectNumber, setSelectNumber] = useState(6);
+    const [selectNumber, setSelectNumber] = useState(2);
+    const [rollValue, setRollValue] = useState();
 
+    // show / hide btn
     const showRules = () => {
         setRules((prev) => !prev);
         setRule((prev) => (prev == "Show" ? "Hide" : "Show"));
     };
 
+    //reset btn
     const handleReset = () => {
         setScore(0);
     };
@@ -34,7 +38,15 @@ function Playground() {
                 <p>select a number</p>
             </div>
             <div>
-                <div>Dice img</div>
+                <Dice
+                    cheatValue={2}
+                    onRoll={(value) => {
+                        setRollValue(value);
+                        console.log("roll", rollValue);
+                    }}
+                    size={100}
+                />
+
                 <p>Click on dice to roll</p>
                 <Button variant="destructive" onClick={() => handleReset()}>
                     Reset score
