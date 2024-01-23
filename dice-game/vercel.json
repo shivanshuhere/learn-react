@@ -1,8 +1,14 @@
 {
-    "build": {
-      "rollupOptions": {
-        "external": ["react-dice-roll"]
+    "builds": [
+      {
+        "src": "@src",
+        "use": "@vercel/static-build",
+        "config": {
+          "rollupOptions": {
+              "external": ["react-dice-roll"]
+          }
+        }
       }
-    }
+    ]
   }
   
