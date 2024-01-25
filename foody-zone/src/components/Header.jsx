@@ -2,7 +2,7 @@ import { Button } from "./ui/button";
 
 function Header() {
   return (
-    <div className="bg-gray-700 min-h-40 md:flex md:justify-center pb-4">
+    <div className="bg-gray-700 min-h-40 md:flex md:justify-center pb-4 sticky top-0 z-10">
       <div
         className="text-center text-3xl pt-4 font-semibold font-mono text-white
       md:absolute top-10 left-5 lg:left-10 "
