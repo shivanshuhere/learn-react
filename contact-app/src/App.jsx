@@ -1,12 +1,17 @@
 import { useState } from "react";
 import Card from "./components/Card";
 import CreateNewContact from "./components/CreateNewContact";
-import { Car, CopySlash } from "lucide";
+import UpdateContacts from "./components/UpdateContacts";
 import { useId } from "react";
 
 function App() {
     const [CreateContactFlag, setCreateContactFlag] = useState(false);
-    const [contacts, setContacts] = useState([]);
+    const [updateFlag, setUpdateFlag] = useState(false);
+    const [contacts, setContacts] = useState([
+        { name: "shivu", email: "ks@gmail.com" },
+    ]);
+    const [userName, setUserName] = useState("");
+
     const handleCreateContact = () => {
         setCreateContactFlag(true);
     };
@@ -15,6 +20,17 @@ function App() {
         console.log(name, email);
         setContacts((prev) => [...prev, { name, email }]);
     };
+
+    const handleDeleteContact = (name) => {
+        console.log(name, "deleted");
+        setContacts((prev) => prev.filter((contact) => contact.name != name));
+    };
+    const handleUpdateContact = (name, newData) => {
+        setUserName(name);
+        console.log(name, "updated");
+        setUpdateFlag(true);
+    };
+
     return (
         <>
             <div className="bg-slate-800 min-h-screen p-2">
@@ -39,10 +55,19 @@ function App() {
                     {/* <p className="relative bottom-10 text-slate-300">
             --icon-- No contact found
           </p> */}
-                    <Card name="shivu" email="ks233434@gmail.com" />
+
                     {contacts.map((ele, index) => (
-                        <Card name={ele.name} email={ele.email} key={index} />
+                        <Card
+                            name={ele.name}
+                            email={ele.email}
+                            key={index}
+                            handleDeleteContact={handleDeleteContact}
+                            handleUpdateContact={handleUpdateContact}
+                        />
                     ))}
+                    {updateFlag ? (
+                        <UpdateContacts setData={contacts} name={userName} />
+                    ) : null}
                     {CreateContactFlag ? (
                         <CreateNewContact
                             submit={setCreateContactFlag}
