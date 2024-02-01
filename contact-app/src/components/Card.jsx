@@ -1,4 +1,4 @@
-function Card({ name, email }) {
+function Card({ name, email, handleDeleteContact, handleUpdateContact }) {
     return (
         <>
             <div className="flex w-full m-2 rounded-lg bg-yellow-200 justify-evenly px-1 flex-wrap  items-center ">
@@ -7,8 +7,10 @@ function Card({ name, email }) {
                     <h2>{name}</h2>
                     <p>{email}</p>
                 </div>
-                <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={() => handleUpdateContact(name)}>Edit</button>
+                <button onClick={() => handleDeleteContact(name)}>
+                    Delete
+                </button>
             </div>
         </>
     );
