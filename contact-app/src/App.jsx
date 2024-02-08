@@ -7,15 +7,17 @@ import { useId } from "react";
 function App() {
     const [CreateContactFlag, setCreateContactFlag] = useState(false);
     const [updateFlag, setUpdateFlag] = useState(false);
+    const [updateName, setUpdateName] = useState("");
     const [contacts, setContacts] = useState([
         { name: "shivu", email: "ks@gmail.com" },
     ]);
-    const [userName, setUserName] = useState("");
+    // const [userName, setUserName] = useState("");
 
     const handleCreateContact = () => {
         setCreateContactFlag(true);
     };
     const Id = useId();
+
     const getdata = (name, email) => {
         console.log(name, email);
         setContacts((prev) => [...prev, { name, email }]);
@@ -25,9 +27,8 @@ function App() {
         console.log(name, "deleted");
         setContacts((prev) => prev.filter((contact) => contact.name != name));
     };
-    const handleUpdateContact = (name, newData) => {
-        setUserName(name);
-        console.log(name, "updated");
+    const handleUpdateContact = (name) => {
+        setUpdateName(name);
         setUpdateFlag(true);
     };
 
@@ -66,7 +67,11 @@ function App() {
                         />
                     ))}
                     {updateFlag ? (
-                        <UpdateContacts setData={contacts} name={userName} />
+                        <UpdateContacts
+                            contacts={contacts}
+                            setUpdateFlag={setUpdateFlag}
+                            nameId={updateName}
+                        />
                     ) : null}
                     {CreateContactFlag ? (
                         <CreateNewContact
