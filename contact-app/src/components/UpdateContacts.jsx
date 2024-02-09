@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 
-function UpdateContacts({ contacts, setUpdateFlag, nameId }) {
-    const [userName, setUserName] = useState("");
-    const [email, setEmail] = useState("");
+function UpdateContacts({ setContacts, setUpdateFlag, nameId, prevEmail }) {
+    const [userName, setUserName] = useState(nameId);
+    const [email, setEmail] = useState(prevEmail);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("updated contact");
+        setContacts((prev) =>
+            prev.map((ele) =>
+                ele.name == nameId ? { name: userName, email } : ele
+            )
+        );
         setUpdateFlag(false);
     };
-    // contacts.forEach((ele) => {
-    //     if (ele.name == nameId) {
-    //         setUserName(ele.name);
-    //         setEmail(ele.email);
-    //     }
-    // });
+
     return (
         <div className="z-10 relative flex">
             <form onSubmit={handleSubmit}>
