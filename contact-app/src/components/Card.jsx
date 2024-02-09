@@ -7,7 +7,9 @@ function Card({ name, email, handleDeleteContact, handleUpdateContact }) {
                     <h2>{name}</h2>
                     <p>{email}</p>
                 </div>
-                <button onClick={() => handleUpdateContact(name)}>Edit</button>
+                <button onClick={() => handleUpdateContact(name, email)}>
+                    Edit
+                </button>
                 <button onClick={() => handleDeleteContact(name)}>
                     Delete
                 </button>
