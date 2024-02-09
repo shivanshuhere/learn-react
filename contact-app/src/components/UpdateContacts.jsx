@@ -16,19 +16,29 @@ function UpdateContacts({ setContacts, setUpdateFlag, nameId, prevEmail }) {
     };
 
     return (
-        <div className="z-10 relative flex">
-            <form onSubmit={handleSubmit}>
+        <div className="z-10 relative bg-yellow-400 p-4 rounded-md ">
+            <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-6 items-center justify-center"
+            >
                 <input
                     type="text"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
+                    placeholder="Update name..."
                 />
                 <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Update email address..."
                 />
-                <button type="submit">update</button>
+                <button
+                    type="submit"
+                    className="self-end font-mono border-2 border-black p-1 text-xs rounded-sm"
+                >
+                    update
+                </button>
             </form>
         </div>
     );
