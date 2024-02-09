@@ -2,7 +2,6 @@ import { useState } from "react";
 import Card from "./components/Card";
 import CreateNewContact from "./components/CreateNewContact";
 import UpdateContacts from "./components/UpdateContacts";
-import { useId } from "react";
 
 function App() {
     const [CreateContactFlag, setCreateContactFlag] = useState(false);
@@ -11,12 +10,12 @@ function App() {
     const [contacts, setContacts] = useState([
         { name: "shivu", email: "ks@gmail.com" },
     ]);
+    const [prevEmail, setPrevEmail] = useState("");
     // const [userName, setUserName] = useState("");
 
     const handleCreateContact = () => {
         setCreateContactFlag(true);
     };
-    const Id = useId();
 
     const getdata = (name, email) => {
         console.log(name, email);
@@ -27,9 +26,10 @@ function App() {
         console.log(name, "deleted");
         setContacts((prev) => prev.filter((contact) => contact.name != name));
     };
-    const handleUpdateContact = (name) => {
+    const handleUpdateContact = (name, email) => {
         setUpdateName(name);
         setUpdateFlag(true);
+        setPrevEmail(email);
     };
 
     return (
@@ -52,11 +52,6 @@ function App() {
                     </button>
                 </div>
                 <div className="flex justify-center items-center flex-col  min-h-screen">
-                    {/* conditional rednder here */}
-                    {/* <p className="relative bottom-10 text-slate-300">
-            --icon-- No contact found
-          </p> */}
-
                     {contacts.map((ele, index) => (
                         <Card
                             name={ele.name}
@@ -68,9 +63,10 @@ function App() {
                     ))}
                     {updateFlag ? (
                         <UpdateContacts
-                            contacts={contacts}
+                            setContacts={setContacts}
                             setUpdateFlag={setUpdateFlag}
                             nameId={updateName}
+                            prevEmail={prevEmail}
                         />
                     ) : null}
                     {CreateContactFlag ? (
