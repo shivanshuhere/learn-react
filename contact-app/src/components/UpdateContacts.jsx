@@ -16,7 +16,7 @@ function UpdateContacts({ setContacts, setUpdateFlag, nameId, prevEmail }) {
     };
 
     return (
-        <div className="z-10 relative bg-yellow-400 p-4 rounded-md ">
+        <div className="z-10 relative bg-yellow-200 p-4 rounded-md ">
             <form
                 onSubmit={handleSubmit}
                 className="flex flex-col gap-6 items-center justify-center"
