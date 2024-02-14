@@ -1,4 +1,3 @@
-import { Outlet } from "react-router";
 import Navbar from "../components/Navbar";
 import NavigationBar from "../components/NavigationBar";
 
@@ -7,7 +6,6 @@ function Layout() {
         <>
             <NavigationBar />
             <Navbar />
-            <Outlet />
         </>
     );
 }
