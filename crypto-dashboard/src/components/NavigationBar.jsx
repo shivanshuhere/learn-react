@@ -10,7 +10,7 @@ function NavigationBar() {
     };
     return (
         <>
-            <div className="flex flex-col justify-between h-screen py-4 px-6 ">
+            <div className="flex flex-col justify-between h-screen py-4 px-6 sticky top-0 ">
                 <div>
                     <h1 className="mb-6">@DOSOMECODING</h1>
                     <div
