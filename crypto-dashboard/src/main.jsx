@@ -11,7 +11,14 @@ import { Dashboard, Transaction, Support } from "./pages/index.js";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<App />}>
+        <Route
+            path="/"
+            element={
+                <>
+                    <App></App>
+                </>
+            }
+        >
             <Route path="home" element={<Dashboard />} />
             <Route path="transaction" element={<Transaction />} />
             <Route path="support" element={<Support />} />
