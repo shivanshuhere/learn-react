@@ -1,13 +1,18 @@
-import { Navigate, useNavigate } from "react-router";
-function NavigationBar() {
+import { useState } from "react";
+import { useNavigate } from "react-router";
+function NavigationBar({ getData }) {
     const navigate = useNavigate();
-    const handleClick = (param, event) => {
-        navigate(param);
+    const [pageName, setPageName] = useState("Dashboard");
+    const handleClick = (page, event) => {
+        navigate(page);
+        setPageName(page);
         event.target.classList.add(`text-red-400`);
         setTimeout(() => {
             event.target.classList.remove(`text-red-400`);
         }, 2000);
     };
+    getData(pageName);
+    // console.log(pageName);
     return (
         <>
             <div className="flex flex-col justify-between h-screen py-4 px-6 sticky top-0 ">
@@ -15,7 +20,7 @@ function NavigationBar() {
                     <h1 className="mb-6">@DOSOMECODING</h1>
                     <div
                         className="flex gap-2"
-                        onClick={(e) => handleClick("home", e)}
+                        onClick={(e) => handleClick("Dashboard", e)}
                     >
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAQ5JREFUSEvtlz8OAUEUxn/b4AhEohCVRuIA/p1BXAGdYzgCtcohBNFrVRQScQGFaNiRkeyu7MzsZJLdYqfc+d778v5989YjpeOlxEumiGtAXZGJJ3AEXhJTANpASWFzAa7B+2jEFeAG2kwsgYl0tADGmpK9gaqPu/9wUeIesDWo+x4QWHF2vk3XwKYvsV9oTpynOq5nMtFca2Bk0NVN4ORynBrAUCMgZ2ClEhCb5jII9h/iYo6dEJeDsqbwKGRyKu9nfprnQFGj1S3gEVdj8T3pI7EBBgZhd4CDitjARwjiRKttInZCbPMsOiG2GaecOK4580UglBmbrnay7NnMsZP1NqlqWeMz9SdhHUUSww91L2EfFzmZfAAAAABJRU5ErkJggg==" />{" "}
                         Dashboard

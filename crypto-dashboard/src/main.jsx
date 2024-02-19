@@ -15,11 +15,11 @@ const router = createBrowserRouter(
             path="/"
             element={
                 <>
-                    <App></App>
+                    <App />
                 </>
             }
         >
-            <Route path="home" element={<Dashboard />} />
+            <Route path="Dashboard" element={<Dashboard />} />
             <Route path="transaction" element={<Transaction />} />
             <Route path="support" element={<Support />} />
         </Route>
