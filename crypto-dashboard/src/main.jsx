@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { Dashboard, Transaction, Support } from "./pages/index.js";
 import Login from "./components/Login.jsx";
+import Forgot from "./components/Forgot.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -17,8 +18,9 @@ const router = createBrowserRouter(
             <Route path="login" element={<Login />} />
             <Route
                 path="terms"
-                element={<div>Terms and conditions page</div>}
+                // element={<div>Terms and conditions page</div>}
             />
+            <Route path="forgot" element={<Forgot />} />
             {/* <Route path="transaction" element={<Transaction />} /> */}
             {/* <Route path="support" element={<Support />} /> */}
         </Route>
