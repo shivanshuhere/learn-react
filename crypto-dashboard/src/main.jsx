@@ -8,20 +8,19 @@ import {
     createRoutesFromElements,
 } from "react-router-dom";
 import { Dashboard, Transaction, Support } from "./pages/index.js";
+import Login from "./components/Login.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route
-            path="/"
-            element={
-                <>
-                    <App />
-                </>
-            }
-        >
-            <Route path="Dashboard" element={<Dashboard />} />
-            <Route path="transaction" element={<Transaction />} />
-            <Route path="support" element={<Support />} />
+        <Route path="/" element={<App />}>
+            {/* <Route path="Dashboard" element={<Dashboard />} /> */}
+            <Route path="login" element={<Login />} />
+            <Route
+                path="terms"
+                element={<div>Terms and conditions page</div>}
+            />
+            {/* <Route path="transaction" element={<Transaction />} /> */}
+            {/* <Route path="support" element={<Support />} /> */}
         </Route>
     )
 );
