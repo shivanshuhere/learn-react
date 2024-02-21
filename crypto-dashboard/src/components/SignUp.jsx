@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-
+import axios from "axios";
 function SignUp() {
     const navigate = useNavigate();
     const [user, setUser] = useState({
@@ -11,8 +11,20 @@ function SignUp() {
         rePassword: "",
         terms: false,
     });
+    const sendData = async (data) => {
+        try {
+            const res = await axios.post(
+                "http://localhost:8000/api/user",
+                data
+            );
+            console.log("Sign up successfull :: ", res);
+        } catch (err) {
+            console.log("signup.jsx :: Sign up failed :: ", err);
+        }
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
+        sendData(user);
         setUser({
             userName: "",
             surname: "",
@@ -32,7 +44,6 @@ function SignUp() {
                     Create a free account by filling data below.
                 </p>
                 <form
-                    action=""
                     onSubmit={handleSubmit}
                     className="mt-6 flex flex-col gap-2"
                 >
@@ -146,7 +157,7 @@ function SignUp() {
                                     (prev) =>
                                         (prev = {
                                             ...prev,
-                                            terms: e.target.checked,
+                                            terms: !prev.terms,
                                         })
                                 )
                             }
