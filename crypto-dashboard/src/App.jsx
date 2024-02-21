@@ -1,12 +1,13 @@
 import { Outlet } from "react-router";
 import Layout from "./layout/Layout";
-import Login from "./components/Login";
+import SuccessVerify from "./components/SuccessVerify";
+import Forgot from "./components/Forgot";
 
 function App() {
     return (
         <div className="flex justify-center items-center h-screen">
-            <Layout />
-            {/* <Login /> */}
+            {/* <Layout /> */}
+            <Forgot />
         </div>
     );
 }
