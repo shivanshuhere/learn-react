@@ -44,19 +44,50 @@ app.use(express.json());
 
 app.listen(port, () => console.log("server is running at port : ", port));
 
-//api
+// -------------------- api ----------------------------------
 app.get("/", (req, res) => {
     console.log("server is at home page");
     res.send("Server's home page");
 });
-app.post("/api/user", (req, res) => {
+
+// sign up
+app.post("/api/user", async (req, res) => {
     const data = req.body;
-    console.log("/api/user ::  Data received :: ", data);
-    res.send("server response okay");
+
     const newUser = new UserModel({
         name: `${data.userName} ${data.surname}`,
         email: data.email,
         password: data.password,
     });
-    newUser.save();
+    try {
+        const response = await newUser.save();
+        if (!response)
+            res.send({
+                statusText: "Sign up fail :: Mongo Db data save failed :: ",
+            });
+        else {
+            res.send({
+                statusText: "Sign up success :: data saved to mongo Db",
+            });
+        }
+    } catch (err) {
+        console.log("MongoDb data save failed :: ", err);
+        res.send({ statusText: "sign up failed :: with error", err });
+    }
+});
+
+// login
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await UserModel.findOne({ email });
+        if (user) res.send({ status: "user exist :: ", user });
+        else {
+            console.log("user doesn't exist");
+            res.send({ statusText: "user doesn't exist" });
+        }
+    } catch (err) {
+        console.log("error while fetching from DB :: ", err);
+        res.send({ errorText: "error while login :: MOngoDb :: ", error: err });
+    }
 });
