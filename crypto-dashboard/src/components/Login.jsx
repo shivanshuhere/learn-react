@@ -1,13 +1,32 @@
+import { useState } from "react";
 import { useNavigate } from "react-router";
-
+import axios from "axios";
 function Login() {
     const navigate = useNavigate();
+    const [data, setData] = useState({
+        email: "",
+        password: "",
+    });
     const handleCreateAccount = () => {
         console.log("account is created");
     };
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post("http://localhost:8000/login", data);
+            console.log("Login success :: response :: ", res);
+        } catch (err) {
+            console.log("Login failed :: Login.jsx ::  ", err);
+        }
+        // console.log("login");
+        setData({
+            email: "",
+            password: "",
+        });
+    };
     return (
         <>
-            <div className="px-4 py-6 w-full sm:w-min sm:border-2 rounded-lg text-xs">
+            <div className="px-4 py-6 w-full sm:w-min sm:border-2 rounded-lg text-xs text-center">
                 <h1 className="sm:text-2xl text-lg font-medium">
                     Welcome to Crypto App
                 </h1>
@@ -15,7 +34,7 @@ function Login() {
                     Enter your credentials to access the account.
                 </p>
                 <form
-                    action=""
+                    onSubmit={handleLogin}
                     className="flex flex-col w-full font-medium sm:text-base gap-3 py-2"
                 >
                     <div>
@@ -26,6 +45,16 @@ function Login() {
                             required
                             placeholder="james@gmail.com"
                             className="border-2 rounded-lg pl-2 placeholder:font-light"
+                            value={data.email}
+                            onChange={(e) =>
+                                setData(
+                                    (prev) =>
+                                        (prev = {
+                                            ...prev,
+                                            email: e.target.value,
+                                        })
+                                )
+                            }
                         />
                     </div>
                     <div>
@@ -35,6 +64,16 @@ function Login() {
                             id="password"
                             required
                             className="border-2 rounded-lg pl-2 placeholder:font-light"
+                            value={data.password}
+                            onChange={(e) =>
+                                setData(
+                                    (prev) =>
+                                        (prev = {
+                                            ...prev,
+                                            password: e.target.value,
+                                        })
+                                )
+                            }
                         />
                     </div>
                     <div className="flex justify-between text-xs font-light ">
