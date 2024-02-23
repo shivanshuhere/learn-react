@@ -3,12 +3,14 @@ import Layout from "./layout/Layout";
 import SuccessVerify from "./components/SuccessVerify";
 import Forgot from "./components/Forgot";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 function App() {
     return (
         <div className="flex justify-center items-center h-screen">
             {/* <Layout /> */}
-            <SignUp />
+            <Login />
+            {/* <SignUp /> */}
         </div>
     );
 }
