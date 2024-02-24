@@ -1,6 +1,8 @@
 import express, { urlencoded } from "express";
 import mongoose, { Schema, model } from "mongoose";
 import cors from "cors";
+import nodemailer from "nodemailer";
+
 const app = express();
 const port = 8000;
 
@@ -90,4 +92,32 @@ app.post("/login", async (req, res) => {
         console.log("error while fetching from DB :: ", err);
         res.send({ errorText: "error while login :: MOngoDb :: ", error: err });
     }
+});
+
+// --------------email verification ----------------
+
+//transport object
+const transport = nodemailer.createTransport({
+    //setp 1
+    host: "ks7876555@gmail.com",
+    port: 465,
+    secure: true,
+    // service: "gmail",
+    auth: {
+        user: "ks7876555@gmail.com",
+        pass: "shivanshuhere",
+    },
+});
+
+// email options (step - 2)
+const emailOptions = {
+    from: "shivu",
+    to: "pivarat605@massefm.com",
+    subject: "Dummy Email verification",
+    text: "test verification",
+};
+
+transport.sendMail(emailOptions, (err, info) => {
+    if (err) console.log("Failed to send email :: ", err);
+    else console.log("Email sent :: ", info);
 });
