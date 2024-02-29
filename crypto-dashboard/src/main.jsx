@@ -8,21 +8,28 @@ import {
     createRoutesFromElements,
 } from "react-router-dom";
 import { Dashboard, Transaction, Support } from "./pages/index.js";
-import Login from "./components/Login.jsx";
-import Forgot from "./components/Forgot.jsx";
+import {
+    Login,
+    SignUp,
+    Forgot,
+    ResetPass,
+    SuccessSent,
+    SuccessVerify,
+    PassResetDone,
+    EmailVerify,
+} from "./components/index.js";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<App />}>
-            {/* <Route path="Dashboard" element={<Dashboard />} /> */}
+        <Route path="/">
             <Route path="login" element={<Login />} />
-            <Route
-                path="terms"
-                // element={<div>Terms and conditions page</div>}
-            />
+            <Route path="signup" element={<SignUp />} />
             <Route path="forgot" element={<Forgot />} />
-            {/* <Route path="transaction" element={<Transaction />} /> */}
-            {/* <Route path="support" element={<Support />} /> */}
+            <Route path="reset-pass" element={<ResetPass />} />
+            <Route path="reset-pass-success" element={<PassResetDone />} />
+            <Route path="Email-verify" element={<EmailVerify />} />
+            <Route path="success-sent" element={<SuccessSent />} />
+            <Route path="success-verify" element={<SuccessVerify />} />
         </Route>
     )
 );
