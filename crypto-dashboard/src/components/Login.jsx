@@ -27,17 +27,17 @@ function Login() {
     return (
         <>
             <div className="px-4 py-6 w-full sm:w-min sm:border-2 rounded-lg text-xs text-center">
-                <h1 className="sm:text-2xl text-lg font-medium">
+                <h1 className="sm:text-2xl md:4xl text-xl font-medium">
                     Welcome to Crypto App
                 </h1>
-                <p className="md:text-sm">
+                <p className="sm:text-sm mb-4 sm:mb-6">
                     Enter your credentials to access the account.
                 </p>
                 <form
                     onSubmit={handleLogin}
-                    className="flex flex-col w-full font-medium sm:text-base gap-3 py-2"
+                    className="flex flex-col w-full font-medium sm:text-base gap-3 max-w-sm mx-auto py-2"
                 >
-                    <div>
+                    <div className="flex gap-4 justify-center">
                         <label htmlFor="email">Email</label>
                         <input
                             type="email"
@@ -57,7 +57,7 @@ function Login() {
                             }
                         />
                     </div>
-                    <div>
+                    <div className="flex gap-4 justify-center">
                         <label htmlFor="password">Password</label>
                         <input
                             type="password"
@@ -97,7 +97,7 @@ function Login() {
                 </form>
                 <button
                     onClick={handleCreateAccount}
-                    className="w-full py-2 rounded-lg text-sm font-medium bg-gray-300 text-gray-500 hover:text-gray-400 hover:bg-gray-200 transition-colors"
+                    className="w-full py-2 rounded-lg text-sm font-medium bg-gray-300 text-gray-500 hover:text-gray-400 hover:bg-gray-200 transition-colors max-w-sm"
                 >
                     Create Accout
                 </button>
