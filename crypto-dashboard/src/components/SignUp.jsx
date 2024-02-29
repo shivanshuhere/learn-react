@@ -180,16 +180,16 @@ function SignUp() {
                         Create Account
                     </button>
                 </form>
-                <p className="text-center mt-2 md:text-sm text-sm">
+                <div className="text-center mt-2 md:text-sm text-sm">
                     Already have an account?{" "}
-                    <div
+                    <p
                         // to={"login"}
                         onClick={() => navigate("login")}
                         className="text-purple-600"
                     >
                         Log in
-                    </div>
-                </p>
+                    </p>
+                </div>
             </div>
         </>
     );
