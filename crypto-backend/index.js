@@ -98,26 +98,25 @@ app.post("/login", async (req, res) => {
 
 //transport object
 const transport = nodemailer.createTransport({
-    //setp 1
-    host: "ks7876555@gmail.com",
-    port: 465,
-    secure: true,
+    service: "gmail",
     // service: "gmail",
+
     auth: {
         user: "ks7876555@gmail.com",
-        pass: "shivanshuhere",
+        pass: "uxmm mkjk fwin tbox",
     },
 });
 
 // email options (step - 2)
 const emailOptions = {
-    from: "shivu",
-    to: "pivarat605@massefm.com",
-    subject: "Dummy Email verification",
-    text: "test verification",
+    from: '"Maddison Foo Koch 👻" <maddison53@ethereal.email>', // sender address
+    to: "taxad95384@mcuma.com", // list of receivers
+    subject: "Hello ✔", // Subject line
+    text: "Hello world?", // plain text body
+    html: "<b>Hello world?</b>", // html body
 };
 
-transport.sendMail(emailOptions, (err, info) => {
-    if (err) console.log("Failed to send email :: ", err);
-    else console.log("Email sent :: ", info);
-});
+transport
+    .sendMail(emailOptions)
+    .then((data) => console.log("Email is send successfully :: ", data))
+    .catch((err) => console.log("Email failed to send :: ", err));
