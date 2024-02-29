@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 function Forgot() {
     const handleBack = () => {
         console.log("to login page");
