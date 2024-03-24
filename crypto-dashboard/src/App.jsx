@@ -7,7 +7,7 @@ import Login from "./components/Login";
 
 function App() {
     return (
-        <div className="flex justify-center items-center h-screen">
+        <div className="w-full min-h-screen flex justify-center items-center">
             {/* <Layout /> */}
             <Login />
             {/* <SignUp /> */}

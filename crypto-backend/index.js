@@ -63,14 +63,16 @@ app.post("/api/user", async (req, res) => {
     });
     try {
         const response = await newUser.save();
-        if (!response)
+        if (!response) {
             res.send({
                 statusText: "Sign up fail :: Mongo Db data save failed :: ",
             });
-        else {
+            console.log("Failed to Save data to Mongo Db");
+        } else {
             res.send({
                 statusText: "Sign up success :: data saved to mongo Db",
             });
+            console.log("Data Saved to Mongo Db");
         }
     } catch (err) {
         console.log("MongoDb data save failed :: ", err);
@@ -115,8 +117,10 @@ const emailOptions = {
     text: "Hello world?", // plain text body
     html: "<b>Hello world?</b>", // html body
 };
-
-transport
-    .sendMail(emailOptions)
-    .then((data) => console.log("Email is send successfully :: ", data))
-    .catch((err) => console.log("Email failed to send :: ", err));
+function sendEmail() {
+    transport
+        .sendMail(emailOptions)
+        .then((data) => console.log("Email is send successfully :: ", data))
+        .catch((err) => console.log("Email failed to send :: ", err));
+    // The code sets up an Express server with MongoDB database connection, CORS, and nodemailer for sending emails. It includes API endpoints for user sign up and login, and a function to send emails for email verification.
+}
