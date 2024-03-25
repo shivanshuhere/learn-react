@@ -96,7 +96,7 @@ app.post("/login", async (req, res) => {
     }
 });
 
-// --------------email verification ----------------
+// -------------- email verification ---------------->
 
 //transport object
 const transport = nodemailer.createTransport({
