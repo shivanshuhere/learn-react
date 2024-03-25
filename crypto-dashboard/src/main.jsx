@@ -21,7 +21,7 @@ import {
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<Dashboard />}>
+        <Route path="/">
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="forgot" element={<Forgot />} />
