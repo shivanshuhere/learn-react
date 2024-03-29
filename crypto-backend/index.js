@@ -1,7 +1,8 @@
 import express, { urlencoded } from "express";
 import mongoose, { Schema, model } from "mongoose";
 import cors from "cors";
-import nodemailer from "nodemailer";
+// import nodemailer from "nodemailer";
+import bycrpt from "bcrypt";
 
 const app = express();
 const port = 8000;
@@ -56,11 +57,15 @@ app.get("/", (req, res) => {
 app.post("/api/user", async (req, res) => {
     const data = req.body;
 
+    const salt = await bycrpt.genSalt();
+    const hashedPass = await bycrpt.hash(data.password, salt);
+
     const newUser = new UserModel({
         name: `${data.userName} ${data.surname}`,
         email: data.email,
-        password: data.password,
+        password: hashedPass,
     });
+
     try {
         const response = await newUser.save();
         if (!response) {
@@ -85,8 +90,10 @@ app.post("/login", async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await UserModel.findOne({ email });
-        if (user) res.send({ status: "user exist :: ", user });
-        else {
+
+        if (await bycrpt.compare(password, user?.password))
+            res.send({ status: "user exist :: ", user });
+        if (!user) {
             console.log("user doesn't exist");
             res.send({ statusText: "user doesn't exist" });
         }
@@ -96,31 +103,31 @@ app.post("/login", async (req, res) => {
     }
 });
 
-// -------------- email verification ---------------->
+// // -------------- email verification ---------------->
 
-//transport object
-const transport = nodemailer.createTransport({
-    service: "gmail",
-    // service: "gmail",
+// //transport object
+// const transport = nodemailer.createTransport({
+//     service: "gmail",
+//     // service: "gmail",
 
-    auth: {
-        user: "ks7876555@gmail.com",
-        pass: "uxmm mkjk fwin tbox",
-    },
-});
+//     auth: {
+//         user: "ks7876555@gmail.com",
+//         pass: "uxmm mkjk fwin tbox",
+//     },
+// });
 
-// email options (step - 2)
-const emailOptions = {
-    from: '"Maddison Foo Koch 👻" <maddison53@ethereal.email>', // sender address
-    to: "taxad95384@mcuma.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>", // html body
-};
-function sendEmail() {
-    transport
-        .sendMail(emailOptions)
-        .then((data) => console.log("Email is send successfully :: ", data))
-        .catch((err) => console.log("Email failed to send :: ", err));
-    // The code sets up an Express server with MongoDB database connection, CORS, and nodemailer for sending emails. It includes API endpoints for user sign up and login, and a function to send emails for email verification.
-}
+// // email options (step - 2)
+// const emailOptions = {
+//     from: '"Maddison Foo Koch 👻" <maddison53@ethereal.email>', // sender address
+//     to: "taxad95384@mcuma.com", // list of receivers
+//     subject: "Hello ✔", // Subject line
+//     text: "Hello world?", // plain text body
+//     html: "<b>Hello world?</b>", // html body
+// };
+// function sendEmail() {
+//     transport
+//         .sendMail(emailOptions)
+//         .then((data) => console.log("Email is send successfully :: ", data))
+//         .catch((err) => console.log("Email failed to send :: ", err));
+//     // The code sets up an Express server with MongoDB database connection, CORS, and nodemailer for sending emails. It includes API endpoints for user sign up and login, and a function to send emails for email verification.
+// }
