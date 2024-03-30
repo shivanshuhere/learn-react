@@ -91,15 +91,16 @@ app.post("/login", async (req, res) => {
     try {
         const user = await UserModel.findOne({ email });
 
-        if (await bycrpt.compare(password, user?.password))
-            res.send({ status: "user exist :: ", user });
         if (!user) {
             console.log("user doesn't exist");
             res.send({ statusText: "user doesn't exist" });
+        } else {
+            await bycrpt.compare(password, user?.password);
+            res.send({ status: "user exist :: ", user });
+            console.log("User exist");
         }
     } catch (err) {
         console.log("error while fetching from DB :: ", err);
-        res.send({ errorText: "error while login :: MOngoDb :: ", error: err });
     }
 });
 
