@@ -6,7 +6,7 @@ function Box({ value = 1, handleSelect }) {
             <div
                 className="w-10 h-10 m-1 bg-slate-300 flex items-center justify-center"
                 onClick={() => {
-                    console.log("selected", value);
+                    alert(`${value} is selected !`);
                     handleSelect(value);
                 }}
             >

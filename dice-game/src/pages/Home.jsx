@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import { useNavigate } from "react-router-dom"; // used navigate to next page
 function Home() {
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ function Home() {
                         Dice Game
                     </h1>
                     <Button
-                        className=" text-slate-800  text-sm bg-slate-300 md:max-w-sm md:mr-8"
+                        className=" text-slate-800  text-sm bg-slate-300 md:max-w-sm md:mr-8 hover:text-white border-transparent border-[1px] hover:border-white"
                         onClick={() => navigate("/playground")}
                     >
                         Play Now

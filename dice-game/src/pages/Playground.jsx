@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Box } from "@/components/ui";
+import { Button } from "../components/ui/button";
+import { Box } from "../components/ui";
 import { useId } from "react";
 import Dice from "react-dice-roll";
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 
 function Playground() {
     const boxes = [];
@@ -57,14 +57,14 @@ function Playground() {
     };
 
     return (
-        <>
+        <div className="bg-slate-900 text-white min-h-screen">
             <div className="md:absolute md:top-8 md:left-8 m-4">
                 <h1 className="text-4xl ">{score}</h1>
                 <p className="font-sans ">Total Score</p>
             </div>
             {/* select number */}
             <div className="md:absolute md:top-10 md:right-10  flex flex-col items-center justify-center">
-                <div className="flex flex-wrap">{boxes}</div>
+                <div className="flex flex-wrap text-slate-900">{boxes}</div>
                 <p className="font-sans ">Select a number</p>
             </div>
             <div className="flex md:h-screen min-h-screen flex-col md:mt-0 -mt-12 justify-center items-center">
@@ -121,7 +121,7 @@ function Playground() {
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 }
 
